@@ -26,6 +26,11 @@ public class Jogo {
         this.Categorias = Categorias;
     }
 
+    public Jogo() {
+    }
+    
+    
+
     public int getJogoId() {
         return JogoId;
     }

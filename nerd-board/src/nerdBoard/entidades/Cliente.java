@@ -20,6 +20,11 @@ public class Cliente {
         this.Endereco = Endereco;
     }
 
+    public Cliente() {
+    }
+    
+    
+
     public int getClienteId() {
         return ClienteId;
     }

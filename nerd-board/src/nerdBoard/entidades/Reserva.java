@@ -26,6 +26,11 @@ public class Reserva {
         this.Jogos = Jogos;
     }
 
+    public Reserva() {
+    }
+    
+    
+
     public int getReservaId() {
         return ReservaId;
     }

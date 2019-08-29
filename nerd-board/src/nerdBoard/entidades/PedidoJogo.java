@@ -20,6 +20,11 @@ public class PedidoJogo {
         this.JogoId = JogoId;
     }
 
+    public PedidoJogo() {
+    }
+
+    
+    
     public int getPedidoJogoId() {
         return PedidoJogoId;
     }

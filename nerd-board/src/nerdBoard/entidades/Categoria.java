@@ -22,13 +22,19 @@ public class Categoria {
         this.Jogos = jogos;
     }
 
-    public int getIdCat() {
+    public Categoria() {
+    }
+
+    public int getCategoriaId() {
         return CategoriaId;
     }
 
-    public void setIdCat(int idCat) {
-        this.CategoriaId = idCat;
+    public void setCategoriaId(int CategoriaId) {
+        this.CategoriaId = CategoriaId;
     }
+    
+
+
 
     public String getNome() {
         return Nome;

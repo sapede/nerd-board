@@ -26,6 +26,11 @@ public class Pedido {
         this.Jogos = Jogos;
     }
 
+    public Pedido() {
+    }
+    
+    
+
     public int getPedidoId() {
         return PedidoId;
     }

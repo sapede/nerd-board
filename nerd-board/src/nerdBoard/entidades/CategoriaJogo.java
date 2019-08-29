@@ -20,6 +20,10 @@ public class CategoriaJogo {
         this.JogoId = JogoId;
     }
 
+    public CategoriaJogo() {
+    }
+    
+    
     public int getCategoriaJogoId() {
         return CategoriaJogoId;
     }
