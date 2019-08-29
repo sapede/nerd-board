@@ -5,6 +5,7 @@
  */
 package nerdBoard.dao;
 
+import java.util.List;
 import nerdBoard.entidades.Pedido;
 
 /**
@@ -19,8 +20,8 @@ public interface IPedidoDAO {
     
     public void Remover(int id);
     
-    public void ObterTodos();
+    public List<Pedido> ObterTodos();
     
-    public void ObterPorId(int Id);
+    public Pedido ObterPorId(int Id);
     
 }

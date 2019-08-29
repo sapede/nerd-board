@@ -5,6 +5,7 @@
  */
 package nerdBoard.dao;
 
+import java.util.List;
 import nerdBoard.entidades.Jogo;
 
 /**
@@ -19,8 +20,8 @@ public interface IJogoDAO {
     
     public void Remover(int id);
     
-    public void ObterTodos();
+    public List<Jogo> ObterTodos();
     
-    public void ObterPorId(int Id);
+    public Jogo ObterPorId(int Id);
     
 }

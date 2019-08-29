@@ -5,6 +5,7 @@
  */
 package nerdBoard.dao;
 
+import java.util.List;
 import nerdBoard.entidades.Reserva;
 
 /**
@@ -19,8 +20,8 @@ public interface IReservaDAO {
     
     public void Remover(int id);
     
-    public void ObterTodos();
+    public List<Reserva> ObterTodos();
     
-    public void ObterPorId(int Id);
+    public Reserva ObterPorId(int Id);
     
 }
