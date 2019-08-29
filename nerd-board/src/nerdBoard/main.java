@@ -1,5 +1,6 @@
 package nerdBoard;
 
+import java.util.List;
 import java.util.Scanner;
 import nerdBoard.dao.ICategoriaDAO;
 import nerdBoard.dao.postgresql.CategoriaDAOImpl;
@@ -33,7 +34,13 @@ public class main {
          cat.Adicionar(ent);
          
          System.out.println("deu");
-
+         
+         List<Categoria> todas = cat.ObterTodos();
+         
+         for (Categoria um : todas) {
+             System.out.println(um.getNome());
+        }
+         
     }
     
 }

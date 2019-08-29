@@ -74,7 +74,7 @@ public class CategoriaDAOImpl implements ICategoriaDAO {
     public List<Categoria> ObterTodos() {
         try{
             Connection con = createConnection();
-            String sql = "select * from author";
+            String sql = "select * from categoria";
             
             List<Categoria> categorias = new ArrayList<Categoria>();
             
