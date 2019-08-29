@@ -14,7 +14,7 @@ import nerdBoard.entidades.Cliente;
  */
 public interface IClienteDAO {
     
-    public void Adcionar(Cliente ent);
+    public void Adicionar(Cliente ent);
     
     public void Atualizar(Cliente ent);
     

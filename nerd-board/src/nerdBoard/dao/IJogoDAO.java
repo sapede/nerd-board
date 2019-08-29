@@ -14,7 +14,7 @@ import nerdBoard.entidades.Jogo;
  */
 public interface IJogoDAO {
     
-    public void Adcionar(Jogo ent);
+    public void Adicionar(Jogo ent);
     
     public void Atualizar(Jogo ent);
     

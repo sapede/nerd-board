@@ -56,7 +56,7 @@ public class CategoriaDAOImpl implements ICategoriaDAO {
     public void Remover(int id) {
         Connection con = createConnection();
         String sql = "delete from categoria where "
-                + "categoriaid = " + id;
+                + "categoriaid = " + id + ";";
         
         try{
             con.createStatement().execute(sql);

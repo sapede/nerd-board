@@ -14,7 +14,7 @@ import nerdBoard.entidades.Reserva;
  */
 public interface IReservaDAO {
     
-    public void Adcionar(Reserva ent);
+    public void Adicionar(Reserva ent);
     
     public void Atualizar(Reserva ent);
     

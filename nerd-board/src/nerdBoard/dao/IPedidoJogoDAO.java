@@ -14,7 +14,7 @@ import nerdBoard.entidades.PedidoJogo;
  */
 public interface IPedidoJogoDAO {
     
-    public void Adcionar(PedidoJogo ent);
+    public void Adicionar(PedidoJogo ent);
     
     public void Atualizar(PedidoJogo ent);
     

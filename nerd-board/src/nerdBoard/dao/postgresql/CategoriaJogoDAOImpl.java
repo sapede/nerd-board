@@ -31,10 +31,11 @@ public class CategoriaJogoDAOImpl implements ICategoriaJogoDAO {
         return connection;
     }
     
-    public void Adicionar(Categoria ent){
+    public void Adicionar(CategoriaJogo ent){
         Connection con = createConnection();
-        String sql = "INSERT INTO categoria (nome) VALUES ("
-                + "'" + ent.getNome() + "'"
+        String sql = "INSERT INTO categoriajogo (categoriaid,jogoid) VALUES ("
+                + ent.getCategoriaId() + "," +
+                + ent.getJogoId()
                 + ");";
         
         try{
@@ -45,11 +46,11 @@ public class CategoriaJogoDAOImpl implements ICategoriaJogoDAO {
         }
     }
 
-    public void Atualizar(Categoria ent) {
+    public void Atualizar(CategoriaJogo ent) {
         Connection con = createConnection();
-        String sql = "update categoria set"
-                + " nome = '" + ent.getNome() + "'"
-                + " where categoriaid = " + ent.getCategoriaId() + ";";
+        String sql = "update categoriajogo set"
+                + " jogoid = " + ent.getJogoId()
+                + " where categoriaid = " + ent.getCategoriaJogoId() + ";";
 
         try{
             con.createStatement().execute(sql);
@@ -61,8 +62,8 @@ public class CategoriaJogoDAOImpl implements ICategoriaJogoDAO {
 
     public void Remover(int id) {
         Connection con = createConnection();
-        String sql = "delete from categoria where "
-                + "categoriaid = " + id;
+        String sql = "delete from categoriajogo where "
+                + "categoriajogoid = " + id + ";";
         
         try{
             con.createStatement().execute(sql);
@@ -72,20 +73,21 @@ public class CategoriaJogoDAOImpl implements ICategoriaJogoDAO {
         }
     }
 
-    public List<Categoria> ObterTodos() {
+    public List<CategoriaJogo> ObterTodos() {
         try{
             Connection con = createConnection();
             String sql = "select * from categoria";
             
-            List<Categoria> categorias = new ArrayList<Categoria>();
+            List<CategoriaJogo> categorias = new ArrayList<CategoriaJogo>();
             
             ResultSet res = con.createStatement().executeQuery(sql);
             
             while(res.next()){
-                Categoria cat = new Categoria();
-                cat.setCategoriaId(res.getInt("categoriaid"));
-                cat.setNome(res.getString("nome"));
-                categorias.add(cat);
+                CategoriaJogo aux = new CategoriaJogo();
+                aux.setCategoriaJogoId(res.getInt("categoriajogoid"));
+                aux.setCategoriaId(res.getInt("categoriaid"));
+                aux.setJogoId(res.getInt("jogoid"));
+                categorias.add(aux);
             }
             return categorias;
         }catch(Exception erro){
@@ -94,19 +96,20 @@ public class CategoriaJogoDAOImpl implements ICategoriaJogoDAO {
         }
     }
 
-    public Categoria ObterPorId(int Id) {
+    public CategoriaJogo ObterPorId(int Id) {
         try{
             Connection con = createConnection();
-            String sql = "select * from categoria "
-                        + "where \"categoriaId\" = " + Id  + ";";
+            String sql = "select * from categoriajogo "
+                        + "where categoriaid = " + Id  + ";";
             
             ResultSet res = con.createStatement().executeQuery(sql);
             
             while(res.next()){
-                Categoria cat = new Categoria();
-                cat.setCategoriaId(res.getInt("categoriaid"));
-                cat.setNome(res.getString("nome"));
-                return cat;
+                CategoriaJogo aux = new CategoriaJogo();
+                aux.setCategoriaJogoId(res.getInt("categoriajogoid"));
+                aux.setCategoriaId(res.getInt("categoriaid"));
+                aux.setJogoId(res.getInt("jogoid"));
+                return aux;
             }
         }catch(Exception erro){
             erro.printStackTrace();
@@ -114,5 +117,5 @@ public class CategoriaJogoDAOImpl implements ICategoriaJogoDAO {
         return null;
     }
 
-    
+  
 }
