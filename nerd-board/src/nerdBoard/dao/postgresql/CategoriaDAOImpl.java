@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package nerdBoard.dao.postgresql;
 
 import java.sql.Connection;
@@ -94,7 +89,23 @@ public class CategoriaDAOImpl implements ICategoriaDAO {
     }
 
     public Categoria ObterPorId(int Id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try{
+            Connection con = createConnection();
+            String sql = "select * from categoria "
+                        + "where \"categoriaId\" = " + Id  + ";";
+            
+            ResultSet res = con.createStatement().executeQuery(sql);
+            
+            while(res.next()){
+                Categoria cat = new Categoria();
+                cat.setCategoriaId(res.getInt("categoriaid"));
+                cat.setNome(res.getString("nome"));
+                return cat;
+            }
+        }catch(Exception erro){
+            erro.printStackTrace();
+        }
+        return null;
     }
 
     
