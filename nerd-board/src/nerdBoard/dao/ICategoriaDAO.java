@@ -14,15 +14,15 @@ import nerdBoard.entidades.Categoria;
  */
 public interface ICategoriaDAO {
     
-    public void Adcionar(Categoria ent);
+    public void Adicionar(Categoria ent);
     
     public void Atualizar(Categoria ent);
     
     public void Remover(int id);
     
-    public void ObterTodos();
+    public List<Categoria> ObterTodos();
     
-    public void ObterPorId(int Id);
+    public Categoria ObterPorId(int Id);
     
     
 }
