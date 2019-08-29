@@ -5,10 +5,24 @@
  */
 package nerdBoard.dao;
 
+import java.util.List;
+import nerdBoard.entidades.Categoria;
+
 /**
  *
  * @author mathe
  */
 public interface ICategoriaDAO {
+    
+    public void Adcionar(Categoria ent);
+    
+    public void Atualizar(Categoria ent);
+    
+    public void Remover(int id);
+    
+    public void ObterTodos();
+    
+    public void ObterPorId(int Id);
+    
     
 }

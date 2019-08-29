@@ -5,10 +5,22 @@
  */
 package nerdBoard.dao;
 
+import nerdBoard.entidades.ReservaJogo;
+
 /**
  *
  * @author mathe
  */
 public interface IReservaJogoDAO {
+    
+    public void Adcionar(ReservaJogo ent);
+    
+    public void Atualizar(ReservaJogo ent);
+    
+    public void Remover(int id);
+    
+    public void ObterTodos();
+    
+    public void ObterPorId(int Id);
     
 }

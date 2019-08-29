@@ -5,10 +5,22 @@
  */
 package nerdBoard.dao;
 
+import nerdBoard.entidades.Cliente;
+
 /**
  *
  * @author mathe
  */
 public interface IClienteDAO {
+    
+    public void Adcionar(Cliente ent);
+    
+    public void Atualizar(Cliente ent);
+    
+    public void Remover(int id);
+    
+    public void ObterTodos();
+    
+    public void ObterPorId(int Id);
     
 }
