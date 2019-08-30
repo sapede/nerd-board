@@ -11,44 +11,41 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import nerdBoard.dao.IClienteDAO;
-import nerdBoard.dao.postgresql.ClienteDAOImpl;
-import nerdBoard.entidades.Cliente;
+import nerdBoard.dao.IPedidoJogoDAO;
+import nerdBoard.dao.postgresql.PedidoJogoDAOImpl;
+import nerdBoard.entidades.PedidoJogo;
 
 
-
-@Path("/cliente")
-public class ClienteController {
-    private IClienteDAO _app = new ClienteDAOImpl();
+@Path("/PedidoJogo")
+public class PedidoJogoController {
+    private IPedidoJogoDAO _app = new PedidoJogoDAOImpl();
     
     
     @GET
     @Path("/")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Cliente> index(){
+    public List<PedidoJogo> index(){
         return _app.ObterTodos();
     }
     
     @GET
     @Path("/select/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Cliente select(@PathParam("id") int pk){
+    public PedidoJogo select(@PathParam("id") int pk){
         System.out.println("Parametro:"+pk);
-        Cliente cat = _app.ObterPorId(pk);
+        PedidoJogo cat = _app.ObterPorId(pk);
         return cat;
     }
     
     @GET
-    @Path("/inserir/{nome}&{endereco}&{telefone}")
+    @Path("/inserir/{jogoId}&{PedidoId}")
     @Produces(MediaType.APPLICATION_JSON)
     public String inserir(
-            @PathParam("nome") String nome,
-            @PathParam("endereco") String endereco,
-            @PathParam("telefone") String telefone){
-        Cliente ent = new Cliente();
-        ent.setNome(nome);
-        ent.setEndereco(endereco);
-        ent.setTelefone(telefone);
+            @PathParam("jogoId") int jogoId,
+            @PathParam("PedidoId") int PedidoId){
+        PedidoJogo ent = new PedidoJogo();
+        ent.setPedidoId(PedidoId);
+        ent.setJogoId(jogoId);
         _app.Adicionar(ent);
         return "deu";
     }
@@ -63,17 +60,15 @@ public class ClienteController {
     
     
     @GET
-    @Path("/atualizar/{id}&{nome}&{endereco}&{telefone}")
+    @Path("/atualizar/{PedidoJogoId}{jogoId}&{PedidoId}}")
     @Produces(MediaType.APPLICATION_JSON)
     public String atualizar (
-            @PathParam("id") int id,
-            @PathParam("nome") String nome,
-            @PathParam("endereco") String endereco,
-            @PathParam("telefone") String telefone){
-        Cliente ent = _app.ObterPorId(id);
-        ent.setNome(nome);
-        ent.setEndereco(endereco);
-        ent.setTelefone(telefone);
+            @PathParam("PedidoJogoId") int PedidoJogoId,
+            @PathParam("jogoId") int jogoId,
+            @PathParam("PedidoId") int PedidoId){
+        PedidoJogo ent = _app.ObterPorId(PedidoJogoId);
+        ent.setPedidoId(PedidoId);
+        ent.setJogoId(jogoId);
         _app.Atualizar(ent);
         return "deu";
     }

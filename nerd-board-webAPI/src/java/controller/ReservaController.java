@@ -5,50 +5,48 @@
  */
 package controller;
 
+import java.util.Date;
 import java.util.List;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import nerdBoard.dao.IClienteDAO;
-import nerdBoard.dao.postgresql.ClienteDAOImpl;
-import nerdBoard.entidades.Cliente;
+import nerdBoard.dao.IReservaDAO;
+import nerdBoard.dao.postgresql.ReservaDAOImpl;
+import nerdBoard.entidades.Reserva;
 
 
-
-@Path("/cliente")
-public class ClienteController {
-    private IClienteDAO _app = new ClienteDAOImpl();
+@Path("/Reserva")
+public class ReservaController {
+    private IReservaDAO _app = new ReservaDAOImpl();
     
     
     @GET
     @Path("/")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Cliente> index(){
+    public List<Reserva> index(){
         return _app.ObterTodos();
     }
     
     @GET
     @Path("/select/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Cliente select(@PathParam("id") int pk){
+    public Reserva select(@PathParam("id") int pk){
         System.out.println("Parametro:"+pk);
-        Cliente cat = _app.ObterPorId(pk);
+        Reserva cat = _app.ObterPorId(pk);
         return cat;
     }
     
     @GET
-    @Path("/inserir/{nome}&{endereco}&{telefone}")
+    @Path("/inserir/{dataretirada}&{dataentrega}")
     @Produces(MediaType.APPLICATION_JSON)
     public String inserir(
-            @PathParam("nome") String nome,
-            @PathParam("endereco") String endereco,
-            @PathParam("telefone") String telefone){
-        Cliente ent = new Cliente();
-        ent.setNome(nome);
-        ent.setEndereco(endereco);
-        ent.setTelefone(telefone);
+            @PathParam("dataretirada") Date dataretirada,
+            @PathParam("dataentrega") Date dataentrega){
+        Reserva ent = new Reserva();
+        ent.setDataEntrega(dataentrega);
+        ent.setDataRetirada(dataretirada);
         _app.Adicionar(ent);
         return "deu";
     }
@@ -63,17 +61,15 @@ public class ClienteController {
     
     
     @GET
-    @Path("/atualizar/{id}&{nome}&{endereco}&{telefone}")
+    @Path("/atualizar/{id}&{dataretirada}&{dataentrega}")
     @Produces(MediaType.APPLICATION_JSON)
     public String atualizar (
             @PathParam("id") int id,
-            @PathParam("nome") String nome,
-            @PathParam("endereco") String endereco,
-            @PathParam("telefone") String telefone){
-        Cliente ent = _app.ObterPorId(id);
-        ent.setNome(nome);
-        ent.setEndereco(endereco);
-        ent.setTelefone(telefone);
+            @PathParam("dataretirada") Date dataretirada,
+            @PathParam("dataentrega") Date dataentrega){
+        Reserva ent = _app.ObterPorId(id);
+        ent.setDataEntrega(dataentrega);
+        ent.setDataRetirada(dataretirada);
         _app.Atualizar(ent);
         return "deu";
     }
