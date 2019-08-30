@@ -18,28 +18,17 @@ and open the template in the editor.
     <body>
         <div>
             <h1>Inserir Categoria</h1>
-            <form name="inserirCategoria" method="get">
+            <form name="inserirCategoria">
                 Nome:<br> 
                 <form id = "form" name="form"><br>
                 <input id="nome" type="text" name="nome"><br>
-                <button id="btnt" onclick="getVal();">Inserir</button>
+                <button id="btnt" onclick="insereCategoria();">Inserir</button>
                 <script>
-                    
-                    
-                    function getVal(){
+                   
+                    function insereCategoria(){
                         var nome = document.getElementById('nome').value;
-                        let url = 'http://localhost:8080/nerd-board-webAPI/api/categoria/inserir/' + nome;
-                        let xhr = new XMLHttpRequest();
-                        xhr.open('GET', url, true);
-
-                        xhr.onreadystatechange = function() {
-                            if (xhr.readyState == 4) {
-                                if (xhr.status = 200){
-                                    console.log(xhr.responseText);
-                                }
-                            }
-                           xhr.send();
-                        }
+                        alert("Adicionar uma nova Categoria com o nome \""+ nome + "\" ?");
+                        $.get('http://localhost:8080/nerd-board-webAPI/api/categoria/inserir/' + nome);
                         
                     }
     
@@ -49,26 +38,41 @@ and open the template in the editor.
         </div>
         
         <div>
+            <h1>Atualizar Categoria</h1>
+            <form name="atualizarCategoria">
+                Id:<input id="idCat" type="text" name="idCat"><br>
+                
+                Nome:<input id="nomeCat" type="text" name="nomeCat"><br>
+                
+                <button id="btnAtualizar" onclick="atualizar();">Atualizar</button>
+                
+                <script>
+                    function atualizar() {
+                            var id = document.getElementById('idCat').value;
+                            var nome = document.getElementById('nomeCat').value;
+                            alert("Deseja mesmo atualizar o elemento de id "+ id + "?");
+                            $.get("http://localhost:8080/nerd-board-webAPI/api/categoria/atualizar/"+id+"&"+nome);
+                    };
+    
+                </script>
+            </form>
+            <br>
+        
+        
+        <div>
             <h1>Remover Categoria</h1>
-            <form name="removerCategoria" method="get">
+            <form name="removerCategoria">
                 Nome:<br> 
                 <input id="idCat" type="text" name="idCat"><br>
                 
-                <button id="btnFiltrar">Remover</button>
+                <button id="btnRmover" onclick="remover();">Remover</button>
                 
                 <script>
-                    $("#btnFiltrar").on("click",
-                        function remove() {
+                    function remover() {
                             var id = document.getElementById('idCat').value;
-                            alert("Deseja mesmo remover");
-                            window.location.href = "http://localhost:8080/nerd-board-webAPI/api/categoria/remover/"+id;
-                        }
-                    );
-                    function remover(){
-                        var id = document.getElementById('idCat').value;
-                        alert("Deseja mesmo remover");
-                        window.location.href = "http://localhost:8080/nerd-board-webAPI/api/categoria/remover/"+id;
-                    }
+                            alert("Deseja mesmo remover o elemento de id "+ id + "?");
+                            $.get("http://localhost:8080/nerd-board-webAPI/api/categoria/remover/"+id);
+                    };
     
                 </script>
             </form>

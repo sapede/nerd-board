@@ -23,7 +23,7 @@ public class JogoDAOImpl implements IJogoDAO{
         Connection connection = null;
         try{
             Class.forName("org.postgresql.Driver");
-            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "1234");
+            connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/nerdboard", "postgres", "1234");
         }catch(Exception erro){
             erro.printStackTrace(); 
         }
