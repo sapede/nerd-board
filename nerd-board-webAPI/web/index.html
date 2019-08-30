@@ -16,7 +16,65 @@ and open the template in the editor.
             crossorigin="anonymous"></script>
     </head>
     <body>
-        <div>cao-chupando-manga</div>
+        <div>
+            <h1>Inserir Categoria</h1>
+            <form name="inserirCategoria" method="get">
+                Nome:<br> 
+                <form id = "form" name="form"><br>
+                <input id="nome" type="text" name="nome"><br>
+                <button id="btnt" onclick="getVal();">Inserir</button>
+                <script>
+                    
+                    
+                    function getVal(){
+                        var nome = document.getElementById('nome').value;
+                        let url = 'http://localhost:8080/nerd-board-webAPI/api/categoria/inserir/' + nome;
+                        let xhr = new XMLHttpRequest();
+                        xhr.open('GET', url, true);
+
+                        xhr.onreadystatechange = function() {
+                            if (xhr.readyState == 4) {
+                                if (xhr.status = 200){
+                                    console.log(xhr.responseText);
+                                }
+                            }
+                           xhr.send();
+                        }
+                        
+                    }
+    
+                </script>
+            </form>
+            <br>
+        </div>
+        
+        <div>
+            <h1>Remover Categoria</h1>
+            <form name="removerCategoria" method="get">
+                Nome:<br> 
+                <input id="idCat" type="text" name="idCat"><br>
+                
+                <button id="btnFiltrar">Remover</button>
+                
+                <script>
+                    $("#btnFiltrar").on("click",
+                        function remove() {
+                            var id = document.getElementById('idCat').value;
+                            alert("Deseja mesmo remover");
+                            window.location.href = "http://localhost:8080/nerd-board-webAPI/api/categoria/remover/"+id;
+                        }
+                    );
+                    function remover(){
+                        var id = document.getElementById('idCat').value;
+                        alert("Deseja mesmo remover");
+                        window.location.href = "http://localhost:8080/nerd-board-webAPI/api/categoria/remover/"+id;
+                    }
+    
+                </script>
+            </form>
+            <br>
+        </div>
+        <div>Categorias</div>
         
         <table>
             <thead>
@@ -30,6 +88,7 @@ and open the template in the editor.
     </body>
     <script>
         $(document).ready(function(){
+
             $.get("http://localhost:8080/nerd-board-webAPI/api/categoria/", 
             function(data){
                 for(var i=0;i<data.length;i++){
@@ -39,5 +98,7 @@ and open the template in the editor.
                 }    
             });
         });
+        
+        
     </script>
 </html>

@@ -34,8 +34,8 @@ public class ClienteDAOImpl implements IClienteDAO{
     public void Adicionar(Cliente ent){
         Connection con = createConnection();
         String sql = "INSERT INTO cliente (nome,endereco,telefone) VALUES ("
-                + "'" + ent.getNome() + "'"
-                + "'" + ent.getEndereco() + "'"
+                + "'" + ent.getNome() + "',"
+                + "'" + ent.getEndereco() + "',"
                 + "'" + ent.getTelefone() + "'"
                 + ");";
         

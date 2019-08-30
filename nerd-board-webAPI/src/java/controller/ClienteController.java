@@ -12,39 +12,44 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import nerdBoard.dao.ICategoriaDAO;
-import nerdBoard.dao.postgresql.CategoriaDAOImpl;
-import nerdBoard.entidades.Categoria;
+import nerdBoard.dao.IClienteDAO;
+import nerdBoard.dao.postgresql.ClienteDAOImpl;
+import nerdBoard.entidades.Cliente;
 
 
 
-@Path("/categoria")
-public class CategoriaController {
-    private ICategoriaDAO _app = new CategoriaDAOImpl();
+@Path("/cliente")
+public class ClienteController {
+    private IClienteDAO _app = new ClienteDAOImpl();
     
     
     @GET
     @Path("/")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Categoria> index(){
+    public List<Cliente> index(){
         return _app.ObterTodos();
     }
     
     @GET
     @Path("/select/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Categoria select(@PathParam("id") int pk){
+    public Cliente select(@PathParam("id") int pk){
         System.out.println("Parametro:"+pk);
-        Categoria cat = _app.ObterPorId(pk);
+        Cliente cat = _app.ObterPorId(pk);
         return cat;
     }
     
     @GET
-    @Path("/inserir/{nome}")
+    @Path("/inserir/{nome}&{endereco}&{telefone}")
     @Produces(MediaType.APPLICATION_JSON)
-    public String inserir(@PathParam("nome") String nome){
-        Categoria ent = new Categoria();
+    public String inserir(
+            @PathParam("nome") String nome,
+            @PathParam("endereco") String endereco,
+            @PathParam("telefone") String telefone){
+        Cliente ent = new Cliente();
         ent.setNome(nome);
+        ent.setEndereco(endereco);
+        ent.setTelefone(telefone);
         _app.Adicionar(ent);
         return "deu";
     }
@@ -59,13 +64,17 @@ public class CategoriaController {
     
     
     @GET
-    @Path("/atualizar/{id}&{nome}")
+    @Path("/atualizar/{id}&{nome}&{endereco}&{telefone}")
     @Produces(MediaType.APPLICATION_JSON)
     public String atualizar (
             @PathParam("id") int id,
-            @PathParam("nome") String nome){
-        Categoria ent = _app.ObterPorId(id);
+            @PathParam("nome") String nome,
+            @PathParam("endereco") String endereco,
+            @PathParam("telefone") String telefone){
+        Cliente ent = _app.ObterPorId(id);
         ent.setNome(nome);
+        ent.setEndereco(endereco);
+        ent.setTelefone(telefone);
         _app.Atualizar(ent);
         return "deu";
     }

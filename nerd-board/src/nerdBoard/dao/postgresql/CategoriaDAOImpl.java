@@ -92,7 +92,7 @@ public class CategoriaDAOImpl implements ICategoriaDAO {
         try{
             Connection con = createConnection();
             String sql = "select * from categoria "
-                        + "where \"categoriaId\" = " + Id  + ";";
+                        + "where categoriaid = " + Id  + ";";
             
             ResultSet res = con.createStatement().executeQuery(sql);
             
