@@ -14,22 +14,46 @@ and open the template in the editor.
             src="https://code.jquery.com/jquery-3.4.1.js"
             integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
             crossorigin="anonymous"></script>
+            
+        <style>
+                label {
+                    
+                    display: inline-block;
+                    width: 90px;
+                    text-align: right;
+                    }
+                    .button {
+                        padding-left: 90px; 
+                    }
+                    button {
+                        margin-left: .5em;
+                    }
+                    table , th , td{
+                        
+                        
+                       padding: 5px;
+                       font-size: 20px;
+                    }
+                
+            </style>
     </head>
     <body>
         <div>
             <h1>Inserir Categoria</h1>
             <form name="inserirCategoria">
-                Nome:<br> 
-                <form id = "form" name="form"><br>
+                
+                <form id = "form" method="get"><br>
+                <label for="nome">Nome </label>
                 <input id="nome" type="text" name="nome"><br>
-                <button id="btnt" onclick="insereCategoria();">Inserir</button>
+                <div class="button">
+                    <button id="btnt" onclick="insereCategoria();">Inserir</button>
+                </div>
                 <script>
                    
                     function insereCategoria(){
                         var nome = document.getElementById('nome').value;
                         alert("Adicionar uma nova Categoria com o nome \""+ nome + "\" ?");
                         $.get('http://localhost:8080/nerd-board-webAPI/api/categoria/inserir/' + nome);
-                        
                     }
     
                 </script>
@@ -40,12 +64,13 @@ and open the template in the editor.
         <div>
             <h1>Atualizar Categoria</h1>
             <form name="atualizarCategoria">
-                Id:<input id="idCat" type="text" name="idCat"><br>
-                
-                Nome:<input id="nomeCat" type="text" name="nomeCat"><br>
-                
-                <button id="btnAtualizar" onclick="atualizar();">Atualizar</button>
-                
+                <label for="idCat">Id </label>
+                <input id="idCat" type="text" name="idCat"><br>
+                <label for="nomeCat">Nome </label>
+                <input id="nomeCat" type="text" name="nomeCat"><br>
+                <div class="button">
+                    <button id="btnAtualizar" onclick="atualizar();">Atualizar</button>
+                </div>
                 <script>
                     function atualizar() {
                             var id = document.getElementById('idCat').value;
@@ -62,14 +87,14 @@ and open the template in the editor.
         <div>
             <h1>Remover Categoria</h1>
             <form name="removerCategoria">
-                Nome:<br> 
-                <input id="idCat" type="text" name="idCat"><br>
-                
+                <label for="idCatRemove">Id</label>
+                <input id="idCatRemove" type="text" name="idCatRemove"><br>
+                <div class="button">
                 <button id="btnRmover" onclick="remover();">Remover</button>
-                
+                </div>
                 <script>
                     function remover() {
-                            var id = document.getElementById('idCat').value;
+                            var id = document.getElementById('idCatRemove').value;
                             alert("Deseja mesmo remover o elemento de id "+ id + "?");
                             $.get("http://localhost:8080/nerd-board-webAPI/api/categoria/remover/"+id);
                     };
@@ -78,9 +103,9 @@ and open the template in the editor.
             </form>
             <br>
         </div>
-        <div>Categorias</div>
+        <div><h3>Categorias</h3></div>
         
-        <table>
+        <table border = 1>
             <thead>
             <th>Id</th>
             <th>Nome</th>
